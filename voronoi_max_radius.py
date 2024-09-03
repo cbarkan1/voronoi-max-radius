@@ -3,7 +3,7 @@ from scipy.spatial import Voronoi
 import matplotlib.pyplot as plt
 from shapely.geometry import Polygon, Point
 
-def plot_voronoi(points, max_radius, xlim, ylim, cell_colors=None):
+def plot_voronoi(axes,points, max_radius, xlim, ylim, cell_colors=None):
 
     # Augment points with 4 corner points to form a very large box around points.
     # This ensures every point in points is enclosed within a cell.
@@ -21,8 +21,6 @@ def plot_voronoi(points, max_radius, xlim, ylim, cell_colors=None):
     if cell_colors is None:
         cell_colors = ['green']*len(points)
 
-    fig, ax = plt.subplots(1,1)
-
     # for each point, plot the intersection of its voronoi cell and a
     # circle of radius max_radius.
     for i, point in enumerate(points):
@@ -35,12 +33,11 @@ def plot_voronoi(points, max_radius, xlim, ylim, cell_colors=None):
         intersection = polygon.intersection(circle)
         xs, ys = intersection.exterior.xy
 
-        ax.plot(point[0],point[1],'o', color='k')
-        ax.fill(xs, ys, alpha=0.5, fc=cell_colors[i], ec='none')
-        ax.plot(xs, ys, color='k')
+        axes.plot(point[0],point[1],'o', color='k')
+        axes.fill(xs, ys, alpha=0.5, fc=cell_colors[i], ec='none')
+        axes.plot(xs, ys, color='k')
 
-    plt.xlim(xlim)
-    plt.ylim(ylim)
+    axes.set_xlim(xlim)
+    axes.set_ylim(ylim)
 
-    return fig, ax
-    
+    return
