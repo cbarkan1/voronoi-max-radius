@@ -6,3 +6,7 @@ Python function: plot_voronoi() in voronoi_max_radius.py
 Two examples: Examples.ipynb
 
 Requirements: numpy, scipy, matplotlib, shapely
+
+Example output:
+
+![voronoi diagram with maximum cell radius](example.png "Example output")

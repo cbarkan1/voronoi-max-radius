@@ -3,7 +3,7 @@ from scipy.spatial import Voronoi
 import matplotlib.pyplot as plt
 from shapely.geometry import Polygon, Point
 
-def plot_voronoi(axes,points, max_radius, xlim, ylim, cell_colors=None):
+def plot_voronoi(axes, points, max_radius, xlim, ylim, cell_colors=None):
 
     # Augment points with 4 corner points to form a very large box around points.
     # This ensures every point in points is enclosed within a cell.
