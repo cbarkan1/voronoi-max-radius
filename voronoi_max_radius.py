@@ -5,16 +5,17 @@ from shapely.geometry import Polygon, Point
 
 def plot_voronoi(points, max_radius, xlim, ylim, cell_colors=None):
 
+    # Augment points with 4 corner points to form a very large box around points.
+    # This ensures every point in points is enclosed within a cell.
     center_x = (xlim[0] + xlim[1])/2
     center_y = (ylim[0] + ylim[1])/2
     max_displacement = max(np.concatenate((np.abs(points[:,0]-center_x), np.abs(points[:,1]-center_y))))
-
     aug_points = 100*max_displacement*np.array([[-1,-1],[1,-1],[1,1],[-1,1]])
     aug_points[:,0] += center_x
     aug_points[:,1] += center_y
-
     all_points = np.concatenate((points, aug_points))
 
+    # Scipy voronoi object
     vor = Voronoi(all_points)
 
     if cell_colors is None:
@@ -22,6 +23,8 @@ def plot_voronoi(points, max_radius, xlim, ylim, cell_colors=None):
 
     fig, ax = plt.subplots(1,1)
 
+    # for each point, plot the intersection of its voronoi cell and a
+    # circle of radius max_radius.
     for i, point in enumerate(points):
         region_index = vor.point_region[i]
         region = vor.regions[region_index]
@@ -40,3 +43,4 @@ def plot_voronoi(points, max_radius, xlim, ylim, cell_colors=None):
     plt.ylim(ylim)
 
     return fig, ax
+    
