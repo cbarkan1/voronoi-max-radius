@@ -1,9 +1,8 @@
 # Plot voronoi diagram where cells have a maximum radius in Python.
 
-Same functionality as geom_voronoi_tile() from ggforce in R, but for Python.
+The python function plot_voronoi() in voronoi_max_radius.py plots a voronoi diagram where each cell has a maximum radius. The color of each cell can be set by the user. This functionality is similar to geom_voronoi_tile() from ggforce in R.
 
-Python function: plot_voronoi() in voronoi_max_radius.py 
-Two examples: Examples.ipynb
+Examples.ipynb contains two examples.
 
 Requirements: numpy, scipy, matplotlib, shapely
 
